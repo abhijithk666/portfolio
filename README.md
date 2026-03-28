@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Abhijith K — Portfolio
+
+Personal portfolio website built with Next.js, showcasing my work, experience, and skills as a Senior Software Engineer.
+
+## Tech Stack
+
+- **Framework:** Next.js (App Router)
+- **Styling:** Tailwind CSS v4
+- **Animations:** Framer Motion
+- **AI Chatbot:** Groq API (llama-3.1-8b-instant)
+- **Language:** TypeScript
+
+## Features
+
+- Dark / light theme with smooth transitions
+- Interactive hero image with parallax and glitch effect
+- Experience timeline with project breakdowns
+- Projects showcase
+- HTML-rendered resume with PDF download
+- About page with tools and background
+- Fun page
+- AI chatbot assistant (Loki) powered by Groq
+- Fully responsive across all screen sizes
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file in the root:
 
-## Learn More
+```env
+GROQ_API_KEY=your_groq_api_key
+```
 
-To learn more about Next.js, take a look at the following resources:
+Get a free API key at [console.groq.com](https://console.groq.com).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+src/
+├── app/
+│   ├── about/        # About page
+│   ├── api/chat/     # Groq chatbot API route
+│   ├── fun/          # Fun page
+│   ├── resume/       # Resume page
+│   └── page.tsx      # Home page
+├── components/
+│   ├── layout/       # Navbar, footer
+│   ├── sections/     # Hero, Experience, Projects, Contact, etc.
+│   └── ui/           # Reusable UI components
+├── lib/
+│   └── data.ts       # All portfolio content
+└── types/
+    └── index.ts      # TypeScript interfaces
+```
 
-## Deploy on Vercel
+## Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The easiest way to deploy is via [Vercel](https://vercel.com). Add `GROQ_API_KEY` to the environment variables in your Vercel project settings.
