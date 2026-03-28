@@ -7,6 +7,7 @@ import { ErrorBoundary } from '@/components/ui/error-boundary';
 import { GridBackground } from '@/components/ui/grid-background';
 import { FloatingChat } from '@/components/ui/floating-chat';
 import { ThemeProvider } from '@/components/theme-provider';
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -27,10 +28,68 @@ const architectsDaughter = Architects_Daughter({
   display: 'swap',
 });
 
+const SITE_URL = 'https://abhijithk-portfolio.vercel.app';
+
 export const metadata: Metadata = {
-  title: 'Abhijith K | Frontend Engineer',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Abhijith K | Frontend Engineer',
+    template: '%s | Abhijith K',
+  },
   description:
-    'Frontend Engineer with 3+ years of experience building secure, high-performance web applications using React, TypeScript, and Next.js.',
+    'Abhijith Kizhakkethodi is a Frontend Engineer based in Bengaluru with 3+ years of experience building high-performance web apps using React, Next.js, and TypeScript.',
+  keywords: [
+    'Abhijith K',
+    'Abhijith Kizhakkethodi',
+    'Frontend Engineer',
+    'React Developer',
+    'Next.js Developer',
+    'TypeScript',
+    'Bengaluru',
+    'India',
+    'Software Engineer',
+    'Web Developer',
+    'Tarento',
+  ],
+  authors: [{ name: 'Abhijith K', url: SITE_URL }],
+  creator: 'Abhijith K',
+  openGraph: {
+    type: 'website',
+    locale: 'en_IN',
+    url: SITE_URL,
+    siteName: 'Abhijith K',
+    title: 'Abhijith K | Frontend Engineer',
+    description:
+      'Abhijith Kizhakkethodi is a Frontend Engineer based in Bengaluru with 3+ years of experience building high-performance web apps using React, Next.js, and TypeScript.',
+    images: [
+      {
+        url: '/images/me-portfolio.png',
+        width: 1200,
+        height: 630,
+        alt: 'Abhijith K – Frontend Engineer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Abhijith K | Frontend Engineer',
+    description:
+      'Abhijith Kizhakkethodi is a Frontend Engineer based in Bengaluru with 3+ years of experience building high-performance web apps using React, Next.js, and TypeScript.',
+    images: ['/images/me-portfolio.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: SITE_URL,
+  },
 };
 
 export default function RootLayout({
@@ -40,6 +99,41 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Abhijith K',
+              alternateName: 'Abhijith Kizhakkethodi',
+              url: SITE_URL,
+              image: `${SITE_URL}/images/me-portfolio.png`,
+              jobTitle: 'Frontend Engineer',
+              worksFor: {
+                '@type': 'Organization',
+                name: 'Tarento Technologies',
+              },
+              address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Bengaluru',
+                addressRegion: 'Karnataka',
+                addressCountry: 'IN',
+              },
+              email: 'abhijithkizhakkethodi@gmail.com',
+              sameAs: [
+                'https://linkedin.com/in/abhijith-k-1b11061a0/',
+                'https://github.com/abhijithk666/',
+              ],
+              knowsAbout: [
+                'React.js', 'Next.js', 'TypeScript', 'JavaScript',
+                'Frontend Development', 'Web Development', 'Node.js',
+              ],
+            }),
+          }}
+        />
+      </head>
       <body className={`${inter.variable} ${lora.variable} ${architectsDaughter.variable} font-sans antialiased bg-background text-foreground min-h-screen relative`}>
         <ThemeProvider>
           <ErrorBoundary>
@@ -52,6 +146,7 @@ export default function RootLayout({
               <Footer />
               <FloatingChat />
             </div>
+            <Analytics />
           </ErrorBoundary>
         </ThemeProvider>
       </body>
