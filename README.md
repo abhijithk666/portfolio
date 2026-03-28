@@ -67,4 +67,4 @@ The website is deployed via [Vercel](https://vercel.com).
 
 ## Live Demo
 
-https://abhijithk.vercel.app/
+https://abhijithk-portfolio.vercel.app/
