@@ -10,7 +10,6 @@ const filterTabs = ['All', 'Web', 'App', 'Side Quests'];
 export function Projects() {
   const [activeTab, setActiveTab] = useState('All');
 
-  // Filter logic (simplified since data doesn't have exact categories mapping yet)
   const filteredProjects = projects;
 
   return (
@@ -23,13 +22,12 @@ export function Projects() {
           transition={{ duration: 0.6 }}
           className="mb-12 flex justify-center"
         >
-          {/* Filter Tabs matching target site */}
-          <div className="inline-flex flex-wrap gap-1 sm:gap-2 p-1.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-full shadow-sm">
+          <div className="inline-flex flex-wrap justify-center gap-1 sm:gap-2 p-1.5 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-full shadow-sm">
             {filterTabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-5 py-2 rounded-full text-[13px] sm:text-sm font-medium transition-all duration-300 ${
+                className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
                   activeTab === tab
                     ? 'bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 shadow-md'
                     : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800'

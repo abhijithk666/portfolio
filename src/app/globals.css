@@ -47,6 +47,9 @@ html.dark {
   * {
     @apply border-border;
   }
+  button, a, [role="button"] {
+    cursor: pointer;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans), system-ui, sans-serif;

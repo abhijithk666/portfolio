@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
-const SYSTEM_PROMPT = `You are Loki, Abhijith K's personal AI assistant on his portfolio website. Your name is Loki. Answer questions about him naturally and concisely.
+const SYSTEM_PROMPT = `You are LowKey, Abhijith K's personal AI assistant on his portfolio website. Your name is LowKey. Answer questions about him naturally and concisely.
 
 About Abhijith:
 - Senior Software Engineer at Tarento Technologies (Nov 2025 – Present)

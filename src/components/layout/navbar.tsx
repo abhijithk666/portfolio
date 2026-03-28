@@ -28,7 +28,7 @@ export function Navbar() {
         {/* Logo / Name */}
         <Link
           href="/"
-          className="font-handwriting text-[1.75rem] md:text-[2.25rem] tracking-tight hover:opacity-80 transition-opacity uppercase"
+          className="font-handwriting text-[1.1rem] sm:text-[1.4rem] md:text-[2.25rem] tracking-tight hover:opacity-80 transition-opacity uppercase"
           style={{ color: '#0047FF' }}
         >
           HEY! THIS IS ABHIJITH

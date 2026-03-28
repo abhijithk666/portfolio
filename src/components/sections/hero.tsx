@@ -70,7 +70,7 @@ export function Hero() {
 
   const renderTextContent = (isOutline: boolean) => (
     <>
-      <h1 className="font-serif text-[3rem] md:text-[5rem] lg:text-[7rem] leading-[1] tracking-tight text-[#2563eb] m-0 flex flex-wrap justify-center items-center">
+      <h1 className="font-serif text-[2rem] sm:text-[2.5rem] md:text-[5rem] lg:text-[7rem] leading-[1] tracking-tight text-[#2563eb] m-0 flex flex-wrap justify-center items-center">
         <span className={isOutline ? 'pointer-events-auto' : ''}>I</span>
         <SyncWordHover 
 defaultWord={words.w1.default}
@@ -90,7 +90,7 @@ defaultWord={words.w2.default}
         />
         <span className={isOutline ? 'pointer-events-auto mx-2 md:mx-4' : 'mx-2 md:mx-4'}>&amp;</span>
       </h1>
-      <h1 className="font-serif text-[3rem] md:text-[5rem] lg:text-[7rem] leading-[1] tracking-tight text-[#2563eb] m-0 flex flex-nowrap justify-center items-center mt-2">
+      <h1 className="font-serif text-[2rem] sm:text-[2.5rem] md:text-[5rem] lg:text-[7rem] leading-[1] tracking-tight text-[#2563eb] m-0 flex flex-wrap justify-center items-center mt-2">
         <SyncWordHover 
 defaultWord={words.w3.default}
           hoverWord={words.w3.hover}

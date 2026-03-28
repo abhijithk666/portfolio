@@ -13,7 +13,7 @@ interface Message {
 export function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: "Hey! I'm Loki, Abhijith's AI assistant. Ask me anything about his work, skills, or experience." },
+    { role: 'model', text: "Hey! I'm LowKey, Abhijith's AI assistant. Ask me anything about his work, skills, or experience." },
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -64,9 +64,9 @@ export function FloatingChat() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="absolute -top-12 right-0 bg-[#e7f5c9] dark:bg-zinc-800 text-sm text-zinc-800 dark:text-zinc-200 px-4 py-2 rounded-xl border border-[#d4eb99] dark:border-zinc-700 whitespace-nowrap shadow-sm pointer-events-none"
+            className="absolute -top-12 right-0 bg-[#e7f5c9] dark:bg-zinc-800 text-xs text-zinc-800 dark:text-zinc-200 px-4 py-2 rounded-xl border border-[#d4eb99] dark:border-zinc-700 whitespace-nowrap shadow-sm pointer-events-none"
           >
-            Hey, I'm Loki 👋
+            Ask me anything 👋
             <div className="absolute -bottom-2 right-6 w-4 h-4 bg-[#e7f5c9] dark:bg-zinc-800 border-b border-r border-[#d4eb99] dark:border-zinc-700 transform rotate-45" />
           </motion.div>
         )}
@@ -97,7 +97,7 @@ export function FloatingChat() {
                   <Image src="/images/loki.jpg" alt="Loki" fill className="object-cover" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm dark:text-zinc-100">Loki</h3>
+                  <h3 className="font-semibold text-sm dark:text-zinc-100">LowKey</h3>
                   <p className="text-xs text-emerald-500 font-medium">● Online</p>
                 </div>
               </div>
