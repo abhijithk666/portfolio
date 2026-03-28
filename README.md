@@ -19,7 +19,7 @@ Personal portfolio website built with Next.js, showcasing my work, experience, a
 - HTML-rendered resume with PDF download
 - About page with tools and background
 - Fun page
-- AI chatbot assistant (Loki) powered by Groq
+- AI chatbot assistant (LowKey) powered by Groq
 - Fully responsive across all screen sizes
 
 ## Getting Started
@@ -38,8 +38,6 @@ Create a `.env.local` file in the root:
 ```env
 GROQ_API_KEY=your_groq_api_key
 ```
-
-Get a free API key at [console.groq.com](https://console.groq.com).
 
 ## Project Structure
 
