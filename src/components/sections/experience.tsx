@@ -68,9 +68,9 @@ export function Experience() {
                         <h4 className="text-base font-medium text-foreground">
                           {project.name}
                         </h4>
-                        {project.link && (
+                        {project.url && (
                           <a
-                            href={project.link}
+                            href={project.url}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-muted-foreground hover:text-foreground transition-colors"

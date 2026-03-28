@@ -1,4 +1,4 @@
-# Abhijith K — Portfolio
+# Abhijith K - Portfolio
 
 Personal portfolio website built with Next.js, showcasing my work, experience, and skills as a Senior Software Engineer.
 
@@ -63,4 +63,8 @@ src/
 
 ## Deploy
 
-The easiest way to deploy is via [Vercel](https://vercel.com). Add `GROQ_API_KEY` to the environment variables in your Vercel project settings.
+The website is deployed via [Vercel](https://vercel.com).
+
+## Live Demo
+
+https://abhijithk.vercel.app/
