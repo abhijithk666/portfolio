@@ -1,6 +1,6 @@
 import Groq from 'groq-sdk';
 import { NextRequest, NextResponse } from 'next/server';
-import { personalInfo, experience, skills, education } from '@/lib/data';
+import { personalInfo, experience, skills, education, projects } from '@/lib/data';
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
@@ -22,6 +22,8 @@ ${experience
   )
   .join('\n')}
 
+His AI/LLM projects are exactly: ${projects.filter((p) => p.tags.includes('AI / LLM')).map((p) => p.title).join(', ')}, plus the LangGraph agentic tools inside Mimir AI. The other projects are not AI products (he only used AI-assisted coding tools on some of them).
+
 Skills:
 ${skills.map((g) => `- ${g.label}: ${g.items.join(', ')}`).join('\n')}
 
@@ -32,7 +34,8 @@ LinkedIn: ${personalInfo.linkedin}
 GitHub: ${personalInfo.github}
 Open to new opportunities and collaborations.
 
-Keep responses short and friendly — this is a chat widget, not a document. If asked something you don't know about Abhijith, say you're not sure but suggest emailing him directly.`;
+Keep responses short and friendly — this is a chat widget, not a document. Write plain text only: no markdown, no asterisks, no headings (the widget can't render them); use simple line breaks for lists.
+Only state facts listed above. Never invent or embellish projects, features, or personal details. If asked something you don't know about Abhijith, say you're not sure but suggest emailing him directly.`;
 
 const MAX_MESSAGE_CHARS = 500;
 const MAX_HISTORY = 10;
@@ -84,7 +87,10 @@ export async function POST(req: NextRequest) {
     ];
 
     const completion = await groq.chat.completions.create({
-      model: 'llama-3.1-8b-instant',
+      // llama-3.1-8b-instant was retired by Groq (model_not_found). Check
+      // https://console.groq.com/docs/deprecations if this starts 500-ing again.
+      model: 'openai/gpt-oss-20b',
+      reasoning_effort: 'low', // reasoning tokens count toward max_tokens
       messages,
       max_tokens: 512,
       temperature: 0.7,
