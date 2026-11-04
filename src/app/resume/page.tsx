@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Download, Mail, Phone } from 'lucide-react';
+import { Download, Mail } from 'lucide-react';
 import { personalInfo, experience, education, skills } from '@/lib/data';
 
 export default function ResumePage() {
@@ -41,10 +41,6 @@ export default function ResumePage() {
               <a href={`mailto:${personalInfo.email}`} className="flex items-center gap-1.5 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 <Mail size={13} /> {personalInfo.email}
               </a>
-              <span className="flex items-center gap-1.5">
-                <Phone size={13} /> {personalInfo.phone}
-              </span>
-
               <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                 LinkedIn
               </a>
@@ -64,38 +60,12 @@ export default function ResumePage() {
           <div className="mb-8 pb-8 border-b border-zinc-200 dark:border-zinc-700">
             <h2 className="text-xs font-bold tracking-widest text-zinc-400 dark:text-zinc-500 uppercase mb-5">Technical Skills</h2>
             <div className="space-y-2.5 text-sm">
-              <div className="flex flex-wrap gap-x-2">
-                <span className="font-semibold text-zinc-700 dark:text-zinc-300 shrink-0">Frontend Technologies:</span>
-                <span className="text-zinc-600 dark:text-zinc-400">{skills.frontend.join(', ')}</span>
-              </div>
-              <div className="flex flex-wrap gap-x-2">
-                <span className="font-semibold text-zinc-700 dark:text-zinc-300 shrink-0">State Management:</span>
-                <span className="text-zinc-600 dark:text-zinc-400">{skills.stateManagement.join(', ')}</span>
-              </div>
-              <div className="flex flex-wrap gap-x-2">
-                <span className="font-semibold text-zinc-700 dark:text-zinc-300 shrink-0">Styling & Animation:</span>
-                <span className="text-zinc-600 dark:text-zinc-400">{skills.styling.join(', ')}</span>
-              </div>
-              <div className="flex flex-wrap gap-x-2">
-                <span className="font-semibold text-zinc-700 dark:text-zinc-300 shrink-0">Backend & APIs:</span>
-                <span className="text-zinc-600 dark:text-zinc-400">{skills.backend.join(', ')}</span>
-              </div>
-              <div className="flex flex-wrap gap-x-2">
-                <span className="font-semibold text-zinc-700 dark:text-zinc-300 shrink-0">Cloud & DevOps:</span>
-                <span className="text-zinc-600 dark:text-zinc-400">{skills.cloud.join(', ')}</span>
-              </div>
-              <div className="flex flex-wrap gap-x-2">
-                <span className="font-semibold text-zinc-700 dark:text-zinc-300 shrink-0">Build Tools & Architecture:</span>
-                <span className="text-zinc-600 dark:text-zinc-400">{skills.buildTools.join(', ')}</span>
-              </div>
-              <div className="flex flex-wrap gap-x-2">
-                <span className="font-semibold text-zinc-700 dark:text-zinc-300 shrink-0">Tools & Frameworks:</span>
-                <span className="text-zinc-600 dark:text-zinc-400">{skills.tools.join(', ')}</span>
-              </div>
-              <div className="flex flex-wrap gap-x-2">
-                <span className="font-semibold text-zinc-700 dark:text-zinc-300 shrink-0">Databases:</span>
-                <span className="text-zinc-600 dark:text-zinc-400">{skills.databases.join(', ')}</span>
-              </div>
+              {skills.map((group) => (
+                <div key={group.label} className="flex flex-wrap gap-x-2">
+                  <span className="font-semibold text-zinc-700 dark:text-zinc-300 shrink-0">{group.label}:</span>
+                  <span className="text-zinc-600 dark:text-zinc-400">{group.items.join(', ')}</span>
+                </div>
+              ))}
             </div>
           </div>
 

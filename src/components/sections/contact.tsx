@@ -6,11 +6,44 @@ import { motion } from 'framer-motion';
 import { personalInfo } from '@/lib/data';
 import { useTheme } from '@/components/theme-provider';
 
+type CalFn = (...args: unknown[]) => void;
+
 declare global {
   interface Window {
-    Cal?: any;
+    Cal?: CalFn & { ns: Record<string, CalFn> };
   }
 }
+
+/* eslint-disable @typescript-eslint/no-explicit-any, prefer-rest-params -- official Cal.com embed snippet, kept verbatim */
+function loadCalEmbed() {
+  (function (C: any, A: string, L: string) {
+    const p = function (a: any, ar: any) { a.q.push(ar); };
+    const d = C.document;
+    C.Cal = C.Cal || function () {
+      const cal = C.Cal;
+      const ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        (api as any).q = (api as any).q || [];
+        if (typeof namespace === "string") {
+          cal.ns[namespace] = cal.ns[namespace] || api;
+          p(cal.ns[namespace], ar);
+          p(cal, ["initNamespace", namespace]);
+        } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+}
+/* eslint-enable @typescript-eslint/no-explicit-any, prefer-rest-params */
 
 export function Contact() {
   const [copied, setCopied] = useState(false);
@@ -25,56 +58,20 @@ export function Contact() {
   // Sync Cal.com theme — inverted: light calendar on dark site, dark calendar on light site
   const calTheme = resolvedTheme === 'dark' ? 'light' : 'dark';
 
+  // Load the embed once. Must stay above the theme effect: effects run in order.
   useEffect(() => {
-    if (window.Cal?.ns?.['30min']) {
-      window.Cal.ns['30min']('ui', {
-        theme: calTheme,
-        cssVarsPerTheme: {
-          light: { 'cal-bg': '#ffffff' },
-          dark: { 'cal-bg': 'transparent' },
-        },
-      });
-    }
-  }, [calTheme]);
-
-  useEffect(() => {
-    // Cal.com embed script
-    (function (C: any, A: string, L: string) {
-      const p = function (a: any, ar: any) { a.q.push(ar); };
-      const d = C.document;
-      C.Cal = C.Cal || function () {
-        const cal = C.Cal;
-        const ar = arguments;
-        if (!cal.loaded) {
-          cal.ns = {};
-          cal.q = cal.q || [];
-          d.head.appendChild(d.createElement("script")).src = A;
-          cal.loaded = true;
-        }
-        if (ar[0] === L) {
-          const api = function () { p(api, arguments); };
-          const namespace = ar[1];
-          (api as any).q = (api as any).q || [];
-          if (typeof namespace === "string") {
-            cal.ns[namespace] = cal.ns[namespace] || api;
-            p(cal.ns[namespace], ar);
-            p(cal, ["initNamespace", namespace]);
-          } else p(cal, ar);
-          return;
-        }
-        p(cal, ar);
-      };
-    })(window, "https://app.cal.com/embed/embed.js", "init");
-
+    loadCalEmbed();
     window.Cal!("init", "30min", { origin: "https://app.cal.com" });
-
     window.Cal!.ns["30min"]("inline", {
       elementOrSelector: "#my-cal-inline-30min",
       config: { layout: "month_view", useSlotsViewOnSmallScreen: "true" },
       calLink: "abhijith-k-vqq3xz/30min",
     });
+  }, []);
 
-    window.Cal!.ns["30min"]("ui", {
+  // Apply the theme on mount and whenever the site theme changes
+  useEffect(() => {
+    window.Cal?.ns?.["30min"]?.("ui", {
       theme: calTheme,
       hideEventTypeDetails: false,
       layout: "month_view",
@@ -83,7 +80,7 @@ export function Contact() {
         dark: { "cal-bg": "transparent" },
       },
     });
-  }, []);
+  }, [calTheme]);
 
   return (
     <section id="contact" className="py-24 md:py-40 flex flex-col items-center justify-center text-center px-6">
@@ -95,7 +92,7 @@ export function Contact() {
         className="flex flex-col items-center w-full max-w-6xl"
       >
         <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-zinc-900 dark:text-zinc-100 mb-8 tracking-tight">
-          Hiring ? or got a project in mind ?
+          Hiring? Or got a project in mind?
         </h2>
 
         <p className="text-zinc-500 dark:text-zinc-400 mb-4 font-sans text-sm md:text-base">Drop a mail at</p>

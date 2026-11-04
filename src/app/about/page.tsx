@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { personalInfo, experience } from '@/lib/data';
 
+const hl = 'font-serif italic text-blue-600 dark:text-blue-400';
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen pt-32 pb-24 px-6 md:px-12 max-w-6xl mx-auto">
@@ -49,16 +51,31 @@ export default function AboutPage() {
           <div className="space-y-6">
             <h3 className="text-xs font-bold tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">My Story</h3>
             <div className="text-zinc-700 dark:text-zinc-300 space-y-4 leading-relaxed font-sans text-sm md:text-base">
-              <p>{personalInfo.summary}</p>
               <p>
-                I thrive in environments where I can wear multiple hats and bridge the gap between design and engineering.
-                My focus is always on creating seamless, intuitive, and highly performant user interfaces.
+                Four years into shipping software from Bengaluru, for teams in India and Europe.
+              </p>
+              <p>
+                Hand me a design and a problem, and I&apos;ll take it all the way to <em className={hl}>production</em>:
+                React and Next.js on top, Node.js and APIs underneath, and lately <em className={hl}>LLMs and AI
+                agents</em> in the middle.
+              </p>
+              <p>
+                I studied Computer Science, but it really clicked in 2022, the first time something I built went live
+                and <em className={hl}>real people</em> started using it. I&apos;ve been chasing that feeling ever since.
+              </p>
+              <p>
+                My bar for good software: it&apos;s <em className={hl}>fast</em>, it works for <em className={hl}>everyone</em>,
+                and it doesn&apos;t make you think. Double that for AI features: they should help, not show off.
+              </p>
+              <p>
+                Off screen, you&apos;ll find me on a <em className={hl}>football turf</em>, or somewhere outside chasing
+                <em className={hl}> Good Weather</em>.
               </p>
             </div>
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xs font-bold tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">I've Worked At</h3>
+            <h3 className="text-xs font-bold tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">I&apos;ve Worked At</h3>
             <div className="flex flex-col gap-8">
               {experience.map((exp, idx) => (
                 <div key={idx} className="group cursor-default">
@@ -74,15 +91,20 @@ export default function AboutPage() {
         {/* Row 2: Why Frontend + Tools */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
           <div className="space-y-6">
-            <h3 className="text-xs font-bold tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">Why Frontend Engineering?</h3>
+            <h3 className="text-xs font-bold tracking-widest text-zinc-400 dark:text-zinc-500 uppercase">Why Software Engineering?</h3>
             <div className="text-zinc-700 dark:text-zinc-300 space-y-4 leading-relaxed font-sans text-sm md:text-base">
               <p>
-                I've always been fascinated by how users interact with software. Frontend engineering allows me to immediately see
-                the impact of my code and craft experiences that humans touch every day.
+                Honestly? I like watching things <em className={hl}>come alive</em>. You write some code, hit refresh, and
+                something that didn&apos;t exist an hour ago is suddenly there.
               </p>
               <p>
-                There's a unique satisfaction in taking a complex system and designing an elegant, minimalist interface that
-                completely abstracts away the difficulty for the end user.
+                I started on the frontend, but kept getting curious about what happens behind the button. So I kept
+                digging, into the APIs, the servers, the deploys, until I could own a feature from the
+                <em className={hl}> database to the pixel</em>.
+              </p>
+              <p>
+                And now there&apos;s AI in the mix, which makes it more fun than ever. Taking something as messy as an
+                LLM and turning it into a button that just <em className={hl}>works</em> is my favourite kind of problem.
               </p>
             </div>
           </div>
@@ -104,7 +126,7 @@ export default function AboutPage() {
               ].map((tool) => (
                 <div key={tool.name} className="flex flex-col items-center gap-2 w-12">
                   <div className="w-12 h-12 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-2xl flex items-center justify-center shadow-sm hover:scale-110 transition-transform cursor-default overflow-hidden">
-                    <img src={tool.icon} alt={tool.name} width={30} height={30} className="object-contain" />
+                    <Image src={tool.icon} alt={tool.name} width={30} height={30} className="object-contain" />
                   </div>
                   <span className="text-[10px] text-zinc-500 dark:text-zinc-400 text-center leading-tight">{tool.name}</span>
                 </div>

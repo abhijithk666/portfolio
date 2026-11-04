@@ -33,16 +33,19 @@ const SITE_URL = 'https://abhijithk-portfolio.vercel.app';
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Abhijith K | Frontend Engineer',
+    default: 'Abhijith K | Full Stack Developer',
     template: '%s | Abhijith K',
   },
   description:
-    'Abhijith Kizhakkethodi is a Frontend Engineer based in Bengaluru with 3+ years of experience building high-performance web apps using React, Next.js, and TypeScript.',
+    'Abhijith Kizhakkethodi is a Full Stack Developer based in Bengaluru with 4+ years of experience building AI-powered web apps using React, Next.js, TypeScript, and Node.js.',
   keywords: [
     'Abhijith K',
     'Abhijith Kizhakkethodi',
+    'Full Stack Developer',
     'Frontend Engineer',
     'React Developer',
+    'AI Engineer',
+    'LLM Integration',
     'Next.js Developer',
     'TypeScript',
     'Bengaluru',
@@ -58,24 +61,15 @@ export const metadata: Metadata = {
     locale: 'en_IN',
     url: SITE_URL,
     siteName: 'Abhijith K',
-    title: 'Abhijith K | Frontend Engineer',
+    title: 'Abhijith K | Full Stack Developer',
     description:
-      'Abhijith Kizhakkethodi is a Frontend Engineer based in Bengaluru with 3+ years of experience building high-performance web apps using React, Next.js, and TypeScript.',
-    images: [
-      {
-        url: '/images/me-portfolio.png',
-        width: 1200,
-        height: 630,
-        alt: 'Abhijith K – Frontend Engineer',
-      },
-    ],
+      'Abhijith Kizhakkethodi is a Full Stack Developer based in Bengaluru with 4+ years of experience building AI-powered web apps using React, Next.js, TypeScript, and Node.js.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Abhijith K | Frontend Engineer',
+    title: 'Abhijith K | Full Stack Developer',
     description:
-      'Abhijith Kizhakkethodi is a Frontend Engineer based in Bengaluru with 3+ years of experience building high-performance web apps using React, Next.js, and TypeScript.',
-    images: ['/images/me-portfolio.png'],
+      'Abhijith Kizhakkethodi is a Full Stack Developer based in Bengaluru with 4+ years of experience building AI-powered web apps using React, Next.js, TypeScript, and Node.js.',
   },
   robots: {
     index: true,
@@ -110,7 +104,7 @@ export default function RootLayout({
               alternateName: 'Abhijith Kizhakkethodi',
               url: SITE_URL,
               image: `${SITE_URL}/images/me-portfolio.png`,
-              jobTitle: 'Frontend Engineer',
+              jobTitle: 'Full Stack Developer',
               worksFor: {
                 '@type': 'Organization',
                 name: 'Tarento Technologies',
@@ -129,6 +123,7 @@ export default function RootLayout({
               knowsAbout: [
                 'React.js', 'Next.js', 'TypeScript', 'JavaScript',
                 'Frontend Development', 'Web Development', 'Node.js',
+                'LLM Integration', 'Agentic AI', 'LangGraph',
               ],
             }),
           }}

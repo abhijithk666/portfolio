@@ -5,6 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 
+const STARTER_QUESTIONS = [
+  'What does Abhijith do?',
+  'What AI work has he done?',
+  "What's his tech stack?",
+  'Tell me a fun fact',
+];
+
 interface Message {
   role: 'user' | 'model';
   text: string;
@@ -13,7 +20,7 @@ interface Message {
 export function FloatingChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'model', text: "Hey! I'm LowKey, Abhijith's AI assistant. Ask me anything about his work, skills, or experience." },
+    { role: 'model', text: "Hey! I'm LowKi, Abhijith's AI assistant. Ask me anything about his work, skills, or experience." },
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -23,8 +30,8 @@ export function FloatingChat() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
 
-  const sendMessage = async () => {
-    const text = input.trim();
+  const sendMessage = async (preset?: string) => {
+    const text = (preset ?? input).trim();
     if (!text || loading) return;
 
     const userMsg: Message = { role: 'user', text };
@@ -97,7 +104,7 @@ export function FloatingChat() {
                   <Image src="/images/loki.jpg" alt="Loki" fill className="object-cover" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm dark:text-zinc-100">LowKey</h3>
+                  <h3 className="font-semibold text-sm dark:text-zinc-100">LowKi</h3>
                   <p className="text-xs text-emerald-500 font-medium">● Online</p>
                 </div>
               </div>
@@ -127,6 +134,19 @@ export function FloatingChat() {
                   </div>
                 </div>
               ))}
+              {messages.length === 1 && !loading && (
+                <div className="flex flex-wrap gap-2">
+                  {STARTER_QUESTIONS.map((q) => (
+                    <button
+                      key={q}
+                      onClick={() => sendMessage(q)}
+                      className="text-left text-xs px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300 hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
+                    >
+                      {q}
+                    </button>
+                  ))}
+                </div>
+              )}
               {loading && (
                 <div className="flex justify-start">
                   <div className="bg-zinc-100 dark:bg-zinc-800 rounded-2xl rounded-tl-sm px-3 py-2">
@@ -142,6 +162,7 @@ export function FloatingChat() {
               <div className="relative flex items-center gap-2">
                 <input
                   type="text"
+                  maxLength={500}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
@@ -149,7 +170,7 @@ export function FloatingChat() {
                   className="flex-1 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-600 rounded-full pl-4 pr-4 py-2 text-sm dark:text-zinc-200 dark:placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
                 />
                 <button
-                  onClick={sendMessage}
+                  onClick={() => sendMessage()}
                   disabled={!input.trim() || loading}
                   className="w-8 h-8 bg-blue-600 hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed rounded-full flex items-center justify-center transition-colors shrink-0"
                 >
