@@ -26,19 +26,18 @@ export function InteractiveImage({ variants }: InteractiveImageProps) {
 
   // Glitch effect cycle on hover
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (isHovered && variants.length > 1) {
-      interval = setInterval(() => {
-        // Randomly skip frames or swap variants to make it feel like a "glitch"
-        if (Math.random() > 0.3) {
-          setCurrentIndex((prev) => (prev + 1) % variants.length);
-        }
-      }, 120); // Fast 120ms cycle for flicker effect
-    } else {
-      setCurrentIndex(0);
-    }
+    if (!isHovered || variants.length < 2) return;
+    const interval = setInterval(() => {
+      // Randomly skip frames or swap variants to make it feel like a "glitch"
+      if (Math.random() > 0.3) {
+        setCurrentIndex((prev) => (prev + 1) % variants.length);
+      }
+    }, 120); // Fast 120ms cycle for flicker effect
     return () => clearInterval(interval);
   }, [isHovered, variants.length]);
+
+  // Not hovered → always show the first variant (no state reset needed)
+  const shownIndex = isHovered ? currentIndex : 0;
 
   // Global mouse tracker for parallax (so it works even when hovering over the pointer-event text sandwich)
   useEffect(() => {
@@ -70,9 +69,9 @@ export function InteractiveImage({ variants }: InteractiveImageProps) {
             alt="Interactive Hero Variant"
             fill
             className={`object-cover rounded-xl transition-all duration-75 ${
-              idx === currentIndex ? 'opacity-100' : 'opacity-0'
+              idx === shownIndex ? 'opacity-100' : 'opacity-0'
             } ${
-              isHovered && idx === currentIndex ? 'contrast-150 saturate-150 blur-[0.5px] scale-105' : 'scale-100'
+              isHovered && idx === shownIndex ? 'contrast-150 saturate-150 blur-[0.5px] scale-105' : 'scale-100'
             }`}
             priority={idx === 0}
           />

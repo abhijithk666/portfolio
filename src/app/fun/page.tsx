@@ -41,7 +41,7 @@ export default function FunPage() {
         transition={{ duration: 0.6 }}
       >
         <h1 className="font-handwriting text-3xl md:text-5xl text-blue-600 dark:text-blue-400 mb-12 uppercase tracking-wider font-bold">
-          THE "I WAS BORED" FOLDER
+          THE &ldquo;I WAS BORED&rdquo; FOLDER
         </h1>
 
         <h2 className="font-serif text-5xl md:text-7xl text-zinc-900 dark:text-zinc-100 mb-4 tracking-tight">
@@ -49,7 +49,7 @@ export default function FunPage() {
         </h2>
 
         <p className="text-zinc-500 dark:text-zinc-400 text-lg md:text-xl font-serif mb-16">
-          Code for code's sake (and my own sanity)
+          Code for code&apos;s sake (and my own sanity)
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
